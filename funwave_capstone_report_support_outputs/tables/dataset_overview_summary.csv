@@ -1,0 +1,18 @@
+metric,value
+Discovered .nc files,33098.0
+Valid files,33098.0
+Selected runs,5000.0
+Processed runs,5000.0
+Failed runs,0.0
+Unique bathymetry profiles,4627.0
+Total station samples,50000.0
+"Unique (run, station) pairs",38480.0
+Median stations per run,10.0
+Median sequence length [samples],1755.0
+Median duration [s],1052.39999999999
+Median target depth [m],4.76171875
+Median dx to offshore [m],376.3502807617188
+Median wet fraction,1.0
+Median dt [s],0.6
+Median offshore depth [m],8.15606689453125
+Median trim start [s],196.03299452363467

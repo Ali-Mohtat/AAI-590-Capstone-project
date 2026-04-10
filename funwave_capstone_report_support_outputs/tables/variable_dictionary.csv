@@ -1,0 +1,15 @@
+variable,plain_english_description,units,source_level,role,why_it_matters
+Hs,Offshore significant wave height,m,run-level,static input,Summarizes incoming wave energy level.
+Tp,Peak wave period of the offshore forcing,s,run-level,static input,Controls the dominant forcing time scale.
+offshore,Resampled offshore surface-elevation time series,surface-elevation units,time series,dynamic input,Primary forcing sequence used by the sequence models.
+offshore_env,Amplitude envelope of the offshore signal,surface-elevation units,time series,derived dynamic input,Captures slow modulation and wave-group structure.
+offshore_dt,Time derivative of the offshore signal,surface-elevation units / s,time series,derived dynamic input,Helps the network see slope and phase changes.
+depth_target,Water depth at the local prediction station,m,station-level,static input,"A main control on propagation, shoaling, and nearshore transformation."
+dx_to_offshore,Cross-shore distance from offshore input to local station,m,station-level,static input,Proxy for propagation distance and travel path length.
+local_slope,Local bathymetric slope at the station,m/m,station-level,static input,Captures local geometric steepness that may affect wave transformation.
+tau_path,Path-integrated travel-time proxy from offshore to target,s,station-level,physics/static input,First-order estimate of arrival delay.
+shoaling_gain_path,Linear-wave-inspired amplitude-gain proxy along the path,unitless,station-level,physics/static input,First-order estimate of amplitude change due to shoaling.
+delay_trace,Offshore signal shifted by the travel-time proxy,surface-elevation units,time series,physics dynamic input,Provides a physically aligned arrival pattern to the model.
+physics_baseline,Delay-and-shoaling deterministic baseline prediction,surface-elevation units,time series,baseline,Provides the physics-informed first guess before residual correction.
+wet_fraction,Fraction of timesteps for which the local station remains dynamically wet,0 to 1,station-level,quality covariate,Low values indicate more difficult or less reliable local targets.
+target_std,Standard deviation of the local target sequence,surface-elevation units,station-level,difficulty proxy,Higher values generally correspond to more energetic local response.

@@ -1,0 +1,3 @@
+model,epochs_ran,configured_epochs,best_epoch,best_val_total,train_total_at_best,generalization_gap_at_best
+stage2_tcn,20,20,15,0.2362,0.2532,-0.016999999999999987
+stage3_hybrid,25,25,23,0.1137,0.1212,-0.007500000000000007

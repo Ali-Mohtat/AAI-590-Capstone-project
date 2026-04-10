@@ -1,0 +1,4 @@
+model,type,feature_schema,channel_schema,hidden_or_width,kernel_or_basis,dilations,batch_size,epochs,patience,learning_rate,weight_decay,trainable_parameters,selection_detail
+stage1_ridge,multi-output ridge regression on forcing-period coefficients,strict_core,forcing-period coefficient basis,linear model,period basis,,,,,,,15872.0,"alpha grid=[0.0001, 0.001, 0.01, 0.1, 1.0, 10.0] | best alpha=10.0 | val MSE=0.000792606093455106"
+stage2_tcn,full-sequence conditional temporal convolutional network,with_geometry,core_derived,32,5,"[1, 2, 4, 8, 16, 32, 64, 128]",2.0,20.0,5.0,0.0008,0.0001,,best validation checkpoint retained
+stage3_hybrid,physics-informed residual TCN with differentiable delay-and-gain baseline,with_physics_aux,physics_augmented,32,5,"[1, 2, 4, 8, 16, 32, 64, 128]",2.0,25.0,6.0,0.0007,0.0001,,"corr_w=0.12, IG_w=0.06, SS_w=0.08, phys_reg_w=0.05"

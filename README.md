@@ -1,86 +1,37 @@
-# Physics-Informed Machine Learning for Shoreline Dynamics
+# Physics-Informed Full-Sequence Prediction of Nearshore Wave Time Series
 
-## Project Overview
-This project develops a physics-informed machine learning framework for predicting shoreline dynamics under varying environmental conditions. The approach integrates wave-resolving numerical simulations with data-driven models to capture nonlinear nearshore processes and improve predictive efficiency relative to traditional coastal modeling methods.
+This repository contains the final AAI-590 capstone project for staged surrogate modeling of nearshore wave time series from offshore FUNWAVE-TVD forcing.
 
-The dataset is derived from FUNWAVE-TVD simulations and consists of transect-based nearshore hydrodynamic outputs. These simulations represent a wide range of wave conditions and coastal morphologies, providing a structured and physically consistent foundation for machine learning applications.
+## Project summary
+The project builds and compares three offshore-to-local surrogate models:
+1. A spectral ridge baseline
+2. A full-sequence conditional temporal convolutional network (TCN)
+3. A physics-informed residual hybrid that adds differentiable travel-time and shoaling structure
 
-## Objectives
-- Develop a reproducible data pipeline for large-scale coastal simulation data
-- Perform exploratory data analysis (EDA) on transect-based hydrodynamic outputs
-- Engineer physics-informed features representing nearshore processes
-- Train and evaluate machine learning models for shoreline-related prediction tasks
-- Establish a scalable framework for coastal forecasting and future deployment
+The final capstone experiment uses 5,000 stationized FUNWAVE-TVD runs and evaluates held-out performance with RMSE, MAE, correlation, mean absolute lag, and spectral-band energy error.
 
-## Dataset Description
-The dataset consists of FUNWAVE-TVD transect-based simulation outputs containing time-resolved nearshore hydrodynamic variables, including:
-- Free surface elevation
-- Velocity components
-- Bathymetry
-- Wave breaking indicators
+## Main result snapshot
+On the held-out test split, the physics-informed hybrid achieved:
+- RMSE = 0.086
+- MAE = 0.065
+- Correlation = 0.891
+- Mean absolute lag = 0.231 s
 
-The dataset represents a large ensemble of simulations spanning diverse wave conditions and bathymetric configurations. It is used as a training and validation basis for machine learning models that approximate or enhance process-based coastal predictions.
+A key interpretation from the depth-binned analysis is that mean sample-wise R^2 deteriorates as the target stations approach the very shallow near-dry regime. The model still works well through most of the profile, and the negative global R^2 is concentrated in the shallowest bin rather than across the whole dataset.
 
-## Methodology
+## Repository structure
+- `funwave_capstone_station_fullsequence_pipeline_v2.ipynb` — main end-to-end notebook
+- `funwave_capstone_report_support_from_saved_artifacts.ipynb` — report-support notebook
+- `AAI590_capstone_report_final_v2.pdf` — final written report
+- `AAI590_capstone_presentation_final_v2.pdf` — final slide deck
 
-### Data Processing and EDA
-- NetCDF ingestion and parsing
-- Metadata extraction and validation
-- Quality control and consistency checks
-- Statistical summaries of key variables
-- Visualization of transect-scale behavior
+## Data expectations
+The main notebook recursively discovers `.nc` files under the configured data root and can also extract `.nc` files from `.zip` archives. The zip-safe version prevents collisions when identical run names appear in different archives.
 
-### Feature Engineering
-- Spatial alignment along transects
-- Extraction of physically meaningful descriptors
-- Representation of nearshore processes (e.g., wave transformation)
+The raw data in .zip format can be found here: https://drive.google.com/drive/folders/1qe8QBZ-wqBaKf7n3wV7q9pqRZpMrcIlk?usp=sharing 
 
-### Machine Learning Models
-- Tree-based models: Random Forest, XGBoost
-- Deep learning models: LSTM, CNN
-
-The modeling approach follows a physics-informed strategy in which numerical simulations provide structured inputs and machine learning captures nonlinear relationships.
-
-## Repository Structure
-
-```
-.
-├── data/
-│   ├── raw/
-│   └── processed/
-├── notebooks/
-│   └── eda_notebook.ipynb
-├── src/
-│   ├── data_processing.py
-│   ├── feature_engineering.py
-│   └── modeling.py
-├── outputs/
-│   ├── figures/
-│   └── tables/
-├── docs/
-│   └── report/
-└── README.md
-```
-
-## Expected Outcomes
-- Reduced computational cost compared to full numerical simulations
-- Improved prediction of nonlinear nearshore dynamics
-- Scalable and transferable shoreline forecasting framework
-
-## Future Work
-- Integration with observational datasets (buoys, surveys, satellite)
-- Model deployment for operational use
-- Transfer learning to additional coastal regions
-- Development of monitoring and retraining pipelines
-
-## Notes
-- Dataset consists of research-grade numerical simulations
-- Proper spatial and temporal alignment is critical for model performance
-
-## Author
-Ali Mohtat  
-PhD Candidate – Coastal and Ocean Engineering  
-M.S. Applied Artificial Intelligence  
-
-## AI Disclosure
-AI-assisted tools were used to support structuring and drafting of documentation. All content was reviewed, validated, and revised prior to submission.
+## Reproducibility notes
+- The capstone-default profile is designed to be local-PC and Colab friendly.
+- Preprocessing caches station-level artifacts to avoid repeated NetCDF parsing.
+- The final stationization logic uses one offshore station and ten shoreward target stations per run.
+- Full sequences are preserved deliberately; no sliding windows are used.

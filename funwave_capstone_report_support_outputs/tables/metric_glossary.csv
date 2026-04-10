@@ -1,0 +1,8 @@
+metric,meaning,direction,why_it_matters
+rmse,Root mean squared error,lower is better,Overall average error magnitude with extra penalty on large misses.
+mae,Mean absolute error,lower is better,Average absolute miss size.
+r2,Coefficient of determination,higher is better,Variance explained; very sensitive to difficult outlier cases.
+corr,Pearson correlation,higher is better,Waveform-shape similarity after scale/offset effects.
+lag_abs_seconds,Absolute timing error estimated from cross-correlation,lower is better,How far the prediction is shifted in time relative to the truth.
+band_rel_err_0,Relative energy error in the infragravity band,lower is better,Checks preservation of low-frequency energy (0.004 to 0.04 Hz).
+band_rel_err_1,Relative energy error in the sea-swell band,lower is better,Checks preservation of dominant sea-swell energy (0.04 to 0.5 Hz).

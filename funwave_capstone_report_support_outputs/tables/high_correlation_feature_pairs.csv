@@ -1,0 +1,7 @@
+feature_1,feature_2,corr
+dx_to_offshore,tau_path,0.9669141124265144
+shoaling_gain_path,wet_fraction,-0.9444023970018661
+depth_target,tau_path,-0.9442944855497525
+depth_target,dx_to_offshore,-0.9384140948047891
+Hs,target_std,0.8520469799835033
+depth_target,shoaling_gain_path,-0.7523707662216502

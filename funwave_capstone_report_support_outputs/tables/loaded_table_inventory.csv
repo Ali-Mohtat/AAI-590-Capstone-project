@@ -1,0 +1,9 @@
+table_key,rows,columns,source
+comparison_df,29560,17,artifact_csv
+depth_summary_df,20,6,artifact_csv
+metadata_df,33098,19,artifact_csv
+run_df,5000,12,artifact_csv
+sample_manifest_df,50000,18,artifact_csv
+sample_manifest_with_splits_df,50000,19,artifact_csv
+selected_meta_df,5000,19,artifact_csv
+summary_df,4,8,artifact_csv

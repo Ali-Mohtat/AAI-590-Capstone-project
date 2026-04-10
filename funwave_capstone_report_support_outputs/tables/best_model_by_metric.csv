@@ -1,0 +1,8 @@
+metric,best_model,value
+rmse,stage3_hybrid,0.0862177766339221
+mae,stage3_hybrid,0.0650562698933913
+r2,stage2_tcn,-1.3987215555879398
+corr,stage3_hybrid,0.8906060576655717
+lag_abs_seconds,stage3_hybrid,0.2305006765899864
+band_rel_err_0,stage3_hybrid,0.2373676279748374
+band_rel_err_1,stage3_hybrid,0.1793694722590204
